@@ -10,13 +10,21 @@
     <groupId>ru.sbrf.cu</groupId>
     <artifactId>java202009</artifactId>
     <version>${revision}</version>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
     <packaging>pom</packaging>
 
     <properties>
 
         <!-- region general -->
-        <java.version>13</java.version>
+        <java.version>1.8</java.version>
         <revision>2020-09-SNAPSHOT</revision>
         <minimal.maven.version>3.6.1</minimal.maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
