@@ -66,6 +66,17 @@ public class ClassRun {
 			});
 		}
 
+		for (Method method : ann3){
+			objects.forEach(object -> {
+				try {
+					method.invoke(object);
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				}
+			});
+		}
 
 	}
 

@@ -30,7 +30,7 @@ public class ClassTest
 		System.out.println("Запуск Test 1");
 		result = a > param;
 		System.out.println(result);
-
+		throw new RuntimeException();
 	}
 
 	@Test
@@ -38,7 +38,6 @@ public class ClassTest
 		System.out.println("Запуск Test 2");
 		result = a > b;
 		System.out.println(result);
-
 	}
 
 	@After
