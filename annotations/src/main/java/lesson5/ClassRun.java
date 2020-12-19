@@ -78,6 +78,11 @@ public class ClassRun {
 			});
 		}
 
+		System.out.println("Итоги прогона тестов: ");
+		System.out.println("Всего было " + ann2.size() * objects.size());
+		System.out.println("Успешно ");
+		System.out.println("Упало с ошибкой ");
+
 	}
 
 
