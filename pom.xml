@@ -24,7 +24,7 @@
     <properties>
 
         <!-- region general -->
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <revision>2020-09-SNAPSHOT</revision>
         <minimal.maven.version>3.6.1</minimal.maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -68,9 +68,11 @@
             <name>Yana Zaidze</name>
         </developer>
     </developers>
-  
+
     <modules>  
+        <module>gc</module>
         <module>hello</module>
         <module>figure</module>
     </modules>
 </project>
+
