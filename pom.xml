@@ -63,9 +63,11 @@
     </developer>
   </developers>
 
-  <modules>
-    <module>gc</module>
-    <module>figure</module>
-    <module>annotations</module>
-  </modules>
+    <modules>  
+        <module>gc</module>
+        <module>hello</module>
+        <module>figure</module>
+      <module>annotations</module>
+    </modules>
 </project>
+
