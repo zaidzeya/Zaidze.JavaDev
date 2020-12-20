@@ -9,9 +9,9 @@ import java.util.List;
 public class ClassRun {
 	public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 		Class<?> clazz = ClassTest.class;
-		Constructor constructor = clazz.getConstructor(int.class);
-		Object object1 = constructor.newInstance(10);
-		Object object2 = constructor.newInstance(20);
+		Constructor constructor = clazz.getConstructor(int.class, String.class, int.class);
+		Object object1 = constructor.newInstance(122, "истина", 1000);
+		Object object2 = constructor.newInstance(56, "ложь", 55);
 
 		List<Object> objects = new ArrayList<>();
 		objects.add(object1);
@@ -25,65 +25,44 @@ public class ClassRun {
 			if (method.isAnnotationPresent(Before.class)) {
 				ann1.add(method);
 			}
-		}
-		System.out.println(ann1);
-
-		for (Method method : clazz.getDeclaredMethods()){
 			if (method.isAnnotationPresent(Test.class)) {
 				ann2.add(method);
 			}
-		}
-		System.out.println(ann2);
-
-		for (Method method : clazz.getDeclaredMethods()){
 			if (method.isAnnotationPresent(After.class)) {
 				ann3.add(method);
 			}
 		}
-		System.out.println(ann3);
 
 		for (Method method : ann1){
-				objects.forEach(object -> {
-					try {
-						method.invoke(object);
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (InvocationTargetException e) {
-						e.printStackTrace();
-					}
-				});
-		}
-
-		for (Method method : ann2){
 			objects.forEach(object -> {
-				try {
-					method.invoke(object);
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					e.printStackTrace();
-				}
+				callMethod(method, object);
+			});
+		}
+		for (Method method : ann2) {
+			objects.forEach(object -> {
+				callMethod(method, object);
+			});
+		}
+		for (Method method : ann3) {
+			objects.forEach(object -> {
+				callMethod(method, object);
 			});
 		}
 
-		for (Method method : ann3){
-			objects.forEach(object -> {
-				try {
-					method.invoke(object);
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					e.printStackTrace();
-				}
-			});
-		}
-
-		System.out.println("Итоги прогона тестов: ");
-		System.out.println("Всего было " + ann2.size() * objects.size());
-		System.out.println("Успешно ");
-		System.out.println("Упало с ошибкой ");
-
+		System.out.println("Итоги прогона тестов. Всего было: " + ann2.size() * objects.size());
 	}
 
-
+	public static Object callMethod(Method method, Object object){
+		Object result = "";
+		try {
+			result = method.invoke(object);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Непредвиденная ошибка в callMethod " + method + " ,текст ошибки: " + e.toString());
+		}
+		return result;
+	}
 }
