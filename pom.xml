@@ -68,7 +68,11 @@
             <name>Yana Zaidze</name>
         </developer>
     </developers>
-<modules>  <module>figure</module>
-    <module>gc</module>
-  </modules>
+
+    <modules>  
+        <module>gc</module>
+        <module>hello</module>
+        <module>figure</module>
+    </modules>
 </project>
+
