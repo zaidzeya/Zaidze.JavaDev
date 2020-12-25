@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassRun {
+	private int errorCount;
+
 	public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+		ClassRun run = new ClassRun();
+
 		Class<?> clazz = ClassTest.class;
 		Constructor constructor = clazz.getConstructor(int.class, String.class, int.class);
 		Object object1 = constructor.newInstance(122, "истина", 1000);
@@ -35,34 +39,45 @@ public class ClassRun {
 
 		for (Method method : ann1){
 			objects.forEach(object -> {
-				callMethod(method, object);
+				run.callMethod(method, object);
 			});
 		}
 		for (Method method : ann2) {
 			objects.forEach(object -> {
-				callMethod(method, object);
+				run.callMethod(method, object);
 			});
 		}
 		for (Method method : ann3) {
 			objects.forEach(object -> {
-				callMethod(method, object);
+				run.callMethod(method, object);
 			});
 		}
 
 		System.out.println("Итоги прогона тестов. Всего было: " + ann2.size() * objects.size());
+		System.out.println("Упало с ошибкой: " + run.getErrorCount());
+
 	}
 
-	public static Object callMethod(Method method, Object object){
+	public Object callMethod(Method method, Object object){
 		Object result = "";
 		try {
 			result = method.invoke(object);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			printError("Ошибка в callMethod " + method + " ,текст ошибки: " + e.toString());
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			printError("Ошибка в callMethod " + method + " ,текст ошибки: " + e.toString());
 		} catch (Exception e) {
-			System.out.println("Непредвиденная ошибка в callMethod " + method + " ,текст ошибки: " + e.toString());
+			printError("Непредвиденная ошибка в callMethod " + method + " ,текст ошибки: " + e.toString());
 		}
 		return result;
+	}
+
+	private void printError(String text){
+		System.out.println(text);
+		errorCount++;
+	}
+
+	public int getErrorCount(){
+		return errorCount;
 	}
 }
