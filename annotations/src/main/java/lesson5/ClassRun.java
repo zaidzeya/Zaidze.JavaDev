@@ -14,12 +14,6 @@ public class ClassRun {
 
 		Class<?> clazz = ClassTest.class;
 		Constructor constructor = clazz.getConstructor(int.class, String.class, int.class);
-		Object object1 = constructor.newInstance(122, "истина", 1000);
-		Object object2 = constructor.newInstance(56, "ложь", 55);
-
-		List<Object> objects = new ArrayList<>();
-		objects.add(object1);
-		objects.add(object2);
 
 		List<Method> ann1 = new ArrayList<>();
 		List<Method> ann2 = new ArrayList<>();
@@ -37,25 +31,20 @@ public class ClassRun {
 			}
 		}
 
-		for (Method method : ann1){
-			objects.forEach(object -> {
-				run.callMethod(method, object);
-			});
-		}
 		for (Method method : ann2) {
-			objects.forEach(object -> {
-				run.callMethod(method, object);
+			Object object = constructor.newInstance(122, "истина", 1000);
+			ann1.forEach(beforeMethod -> {
+				run.callMethod(beforeMethod, object);
 			});
-		}
-		for (Method method : ann3) {
-			objects.forEach(object -> {
-				run.callMethod(method, object);
+			run.callMethod(method, object);
+			ann3.forEach(afterMethod -> {
+				run.callMethod(afterMethod, object);
 			});
+
 		}
 
-		System.out.println("Итоги прогона тестов. Всего было: " + ann2.size() * objects.size());
+		System.out.println("Итоги прогона тестов. Всего было: " + ann2.size());
 		System.out.println("Упало с ошибкой: " + run.getErrorCount());
-
 	}
 
 	public Object callMethod(Method method, Object object){

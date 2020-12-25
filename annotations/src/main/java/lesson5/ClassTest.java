@@ -19,6 +19,7 @@ public class ClassTest
 
 	@Before
 	public void methodBefore() {
+		System.out.println("_____________");
 		System.out.println("Начало (Before)");
 		a = 100;
 		b = 22;
