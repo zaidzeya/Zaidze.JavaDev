@@ -6,9 +6,10 @@
   <!-- All POMs extend the Super POM unless explicitly set -->
   <!--<parent>*</parent>-->
 
-   <groupId>ru.sbrf.cu</groupId>
-   <artifactId>java202009</artifactId>
-   <version>${revision}</version>
+  <groupId>ru.sbrf.cu</groupId>
+  <artifactId>java202009</artifactId>
+  <version>${revision}</version>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -16,10 +17,15 @@
       <version>4.12</version>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
+    </dependency>
   </dependencies>
 
   <packaging>pom</packaging>
-  
+
   <properties>
     <!-- region general -->
     <java.version>11</java.version>
@@ -63,11 +69,11 @@
     </developer>
   </developers>
 
-    <modules>  
-        <module>gc</module>
-        <module>hello</module>
-        <module>figure</module>
-      <module>annotations</module>
-    </modules>
+  <modules>
+    <module>gc</module>
+    <module>hello</module>
+    <module>figure</module>
+    <module>annotations</module>
+    <module>threadPrinter</module>
+  </modules>
 </project>
-
