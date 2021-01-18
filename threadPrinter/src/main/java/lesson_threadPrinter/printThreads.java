@@ -2,10 +2,8 @@ package lesson_threadPrinter;
 
 import java.util.concurrent.TimeUnit;
 
-public class loveJava implements Runnable{
-	public static void main(String[] args) {
-
-	}
+public class printThreads implements Runnable{
+	public static void main(String[] args) {}
 
 	@Override
 	synchronized public void run() {
