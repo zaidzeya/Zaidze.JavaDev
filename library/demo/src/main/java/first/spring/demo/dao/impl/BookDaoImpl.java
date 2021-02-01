@@ -2,14 +2,17 @@ package first.spring.demo.dao.impl;
 
 import first.spring.demo.dao.BookDao;
 import first.spring.demo.model.Book;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
+@Transactional
+@Repository
 public class BookDaoImpl implements BookDao {
+
 	@PersistenceContext
 	private EntityManager em;
 
