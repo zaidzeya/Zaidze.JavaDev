@@ -10,5 +10,5 @@ public interface BookDao {
 
 	Optional<Book> getBookById(Integer id);
 
-	int addNewBook(Book book);
+	Long addNewBook(Book book);
 }

@@ -1,62 +1,35 @@
 package first.spring.demo.model;
 
+import lombok.*;
+
+import javax.persistence.*;
 import java.lang.ref.SoftReference;
+import java.util.List;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity // Указывает, что данный класс является сущностью
+@Table(name = "book") // Задает имя таблицы, на которую будет отображаться сущность
 public class Book {
-	private int id;
+	@Id // Позволяет указать какое поле является идентификатором
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Стратегия генерации идентификаторов
+	private long id;
+
+	// Задает имя и некоторые свойства поля таблицы, на которое будет отображаться поле сущности
+	@Column(name = "book_name", nullable = false, unique = false)
 	private String name;
-	private String author;
-	private String country;
 
-	public Book() {
-	}
+	// Указывает на связь между таблицами "один к одному"
+	@ManyToOne(targetEntity = Author.class)
+	// Задает поле, по которому происходит объединение с таблицей для хранения связанной сущности
+	@JoinColumn(name = "author_id")
+	private Author author;
 
-	public Book(int id, String name, String author, String country) {
-		this.id = id;
-		this.name = name;
-		this.author = author;
-		this.country = country;
-	}
+	// Указывает на связь между таблицами "один к одному"
+	@OneToOne(targetEntity = Genre.class)
+	// Задает поле, по которому происходит объединение с таблицей для хранения связанной сущности
+	@JoinColumn(name = "genre_id")
+	private Genre genre;
 
-	public int getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	@Override
-	public String toString() {
-		return "Book{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", author='" + author + '\'' +
-				", country='" + country + '\'' +
-				'}';
-	}
 }
