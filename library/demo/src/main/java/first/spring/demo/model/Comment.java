@@ -16,10 +16,10 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(name = "description", nullable = false, unique = false)
+	@Column(name = "description", nullable = false)
 	private String description;
 
-	@ManyToOne(targetEntity = Book.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Book.class, cascade = CascadeType.ALL) //много комментариев к одной книге
 	@JoinColumn(name = "book_id")
 	private Book book;
 }

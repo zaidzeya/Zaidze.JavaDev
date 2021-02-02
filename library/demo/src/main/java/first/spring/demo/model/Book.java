@@ -9,27 +9,21 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity // Указывает, что данный класс является сущностью
-@Table(name = "book") // Задает имя таблицы, на которую будет отображаться сущность
+@Entity
+@Table(name = "book")
 public class Book {
-	@Id // Позволяет указать какое поле является идентификатором
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // Стратегия генерации идентификаторов
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	// Задает имя и некоторые свойства поля таблицы, на которое будет отображаться поле сущности
-	@Column(name = "book_name", nullable = false, unique = false)
+	@Column(name = "book_name", nullable = false)
 	private String name;
 
-	// Указывает на связь между таблицами "один к одному"
-	@ManyToOne(targetEntity = Author.class)
-	// Задает поле, по которому происходит объединение с таблицей для хранения связанной сущности
+	@ManyToOne(targetEntity = Author.class) // много книг у одного автора
 	@JoinColumn(name = "author_id")
 	private Author author;
 
-	// Указывает на связь между таблицами "один к одному"
-	@OneToOne(targetEntity = Genre.class)
-	// Задает поле, по которому происходит объединение с таблицей для хранения связанной сущности
+	@ManyToOne(targetEntity = Genre.class)  // много книг одного жанра
 	@JoinColumn(name = "genre_id")
 	private Genre genre;
-
 }

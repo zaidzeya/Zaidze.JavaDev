@@ -6,8 +6,12 @@ jpa:
   generate-ddl: false
   hibernate:
     ddl-auto: none
-
+    dialect: org.hibernate.dialect.H2Dialect
     show-sql: true
+    connection:
+      driver_class: org.h2.Driver
+      username: sa
+      password: sa
 
 spring:
   datasource:

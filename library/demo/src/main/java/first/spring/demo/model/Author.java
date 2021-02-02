@@ -16,6 +16,6 @@ public class Author {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(name = "name", nullable = false, unique = false)
+	@Column(name = "name", nullable = false)
 	private String name;
 }

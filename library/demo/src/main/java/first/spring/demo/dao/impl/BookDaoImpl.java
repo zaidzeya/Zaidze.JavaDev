@@ -25,14 +25,14 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public Optional<Book> getBookById(Integer id) {
-		/*Book book = null;
-		for (Book item : books) {
-			if (id == item.getId()) {
-				book = item;
-				break;
-			}
-		}
-		return Optional.ofNullable(book);*/
+//		Book book = null;
+//		for (Book item : books) {
+//			if (id == item.getId()) {
+//				book = item;
+//				break;
+//			}
+//		}
+//		return Optional.ofNullable(book);
 		return null;
 	}
 
